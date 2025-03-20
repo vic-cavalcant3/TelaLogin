@@ -29,31 +29,26 @@ export default function Acesso() {
             delay={500}
             style={styles.containerHeader}
           >
-            <Text style={styles.message}>Bem-vindo(a)</Text>
+            <Text style={styles.message}>Cadastre-se</Text>
           </Animatable.View>
 
           <Animatable.View animation="fadeInUp" style={styles.containerForm}>
             <Text style={styles.title}>E-mail</Text>
             <TextInput placeholder="Digite um email..." style={styles.input} />
+
+            <Text style={styles.title}>Telefone</Text>
+            <TextInput placeholder="Seu Telefone" style={styles.input} />
+
+            <Text style={styles.title}>CPF</Text>
+            <TextInput placeholder="Digite seu CPF" style={styles.input} />
+
+            <Text style={styles.title}>Senha</Text>
             <TextInput placeholder="Sua senha" style={styles.input} />
+
+
             <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>Acessar</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity 
-            onPress={() => navigation.navigate("cadastre")}
-            style={styles.buttonRegister}>
-
-              <Text style={styles.registerText}>
-                Não possui uma conta? Cadastre-se
-              </Text>
-            </TouchableOpacity>
-{/*             
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("login")}
-                      style={styles.button}>
-                      <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity> */}
           </Animatable.View>
 
 

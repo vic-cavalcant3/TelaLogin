@@ -28,13 +28,16 @@ export default function Bem_Vindo() {
           Monitore e organize seus recursos didáticos de qualquer lugar!
         </Text>
         <Text style={styles.text}>Faça o login para começar</Text>
+        
         <TouchableOpacity
           onPress={() => navigation.navigate("entrada")}
-          style={styles.button}
-        >
+          style={styles.button}>
           <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
-      </Animatable.View>
+
+
+        </Animatable.View>
+
     </View>
   );
 }
