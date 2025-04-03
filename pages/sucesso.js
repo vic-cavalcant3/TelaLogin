@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync();
 
-export default function Bem_Vindo() {
+export default function Sucesso() {
   const navigation = useNavigation();
 
   const [loaded, error] = useFonts({
@@ -45,7 +45,7 @@ export default function Bem_Vindo() {
         style={styles.containerForm}
       >
         <Text style={styles.title}>
-          Monitore e organize seus recursos didáticos de qualquer lugar!
+          Login bem-sucedico!!
         </Text>
         <Text style={styles.text}>Faça o login para começar</Text>
         

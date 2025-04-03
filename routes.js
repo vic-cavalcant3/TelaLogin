@@ -2,7 +2,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Bem_Vindo from './pages/index';
 import Acesso from './pages/entrada';
 import saida from './pages/index';
-import cadastre from './pages/cadastro';
+import Sucesso from './pages/sucesso';
+import Cadastro from './pages/cadastro';
+
 
 const Stack = createStackNavigator();
 
@@ -28,12 +30,20 @@ export default function Routes() {
                 />
 
             <Stack.Screen
-                name="cadastre"
-                component={cadastre}
+                name="sucesso"
+                component={Sucesso}
                 options={{ headerShown: false }}              
                 />
+
+            <Stack.Screen
+                name="cadastro"
+                component={Cadastro}
+                options={{ headerShown: false }}              
+                />
+
+           
         </Stack.Navigator>
 
         
-        )
+        );
 } 

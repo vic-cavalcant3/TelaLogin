@@ -8,19 +8,35 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
+import { StatusBar } from "expo-status-bar";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Acesso() {
-    const navigation = useNavigation()
+
+export default function Cadastro() {
+    const navigation = useNavigation();
+
+    const[email,setEmail] = useState(''); //Variavel & Função
+    const[senha,setSenha] = useState('');
+
+function cadastrar(){
+  const usuario = {email:email, senha:senha }
+  AsyncStorage.setItem("chave", JSON.stringify(usuario));
+  alert("Cadastro efeituado com sucesso")
+}
+
+function cadastrar(){
+  if (email == "victorrocha0223@gmail.com" && senha == "2512"){
+    navigation.navigate("sucesso")
+  }else("Dados Incorretos")
+}
+
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
-        <TouchableOpacity
-            onPress={() => navigation.navigate("saida")}
-            style={styles.botaotext}>
-            <Text style={styles.titlebutton}> clique aqui pra voltar</Text>
-        </TouchableOpacity>
+
 
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
@@ -34,24 +50,32 @@ export default function Acesso() {
 
           <Animatable.View animation="fadeInUp" style={styles.containerForm}>
             <Text style={styles.title}>E-mail</Text>
-            <TextInput placeholder="Digite um email..." style={styles.input} />
-
-            <Text style={styles.title}>Telefone</Text>
-            <TextInput placeholder="Seu Telefone" style={styles.input} />
-
-            <Text style={styles.title}>CPF</Text>
-            <TextInput placeholder="Digite seu CPF" style={styles.input} />
-
-            <Text style={styles.title}>Senha</Text>
-            <TextInput placeholder="Sua senha" style={styles.input} />
+            <TextInput placeholder="Digite um email..." style={styles.input} onChangeText={(value) => setEmail(value)} />
+            {/* <TextInput placeholder="Digite seu Telefone..." style={styles.input} onChangeText={(value) => setTelefone(value)} />
+            <TextInput placeholder="Digite seu CPF..." style={styles.input} onChangeText={(value) => setCpf(value)} /> */}
+            <TextInput placeholder="Escolha uma senha" style={styles.input} onChangeText={(value) => setSenha(value)} />
 
 
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Acessar</Text>
+            <TouchableOpacity onPress={acessar} style={styles.button} >
+              <Text style={styles.buttonText} >Cadastrar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+            onPress={() => navigation.navigate("saida")}
+            style={styles.voltar}>
+            <Text style={styles.voltartext}> clique aqui pra voltar</Text>
+        </TouchableOpacity>
+
+            <TouchableOpacity 
+            onPress={() => navigation.navigate("cadastre")}
+            style={styles.buttonRegister}>
+
+              <Text style={styles.registerText}>
+                Não possui uma conta? Cadastre-se
+              </Text>
             </TouchableOpacity>
           </Animatable.View>
-
-
+          <StatusBar style="light"></StatusBar>
         </View>
 
       </TouchableWithoutFeedback>
@@ -118,5 +142,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#880000",
     color: "#fff",
     fontSize: 18,
+  },
+
+  botaotext:{
+    width: "100%",
+    borderRadius: 4,
+    paddingVertical: 8,
+    marginTop: 14,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
