@@ -16,6 +16,12 @@ export default function Routes() {
                 component={Bem_Vindo}
                 options={{ headerShown: false }}                 
                  />
+                
+            <Stack.Screen
+                name="acesso"
+                component={Acesso}
+                options={{ headerShown: false }}                 
+            />
 
             <Stack.Screen
                 name="entrada"

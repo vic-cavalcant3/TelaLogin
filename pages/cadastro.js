@@ -34,6 +34,7 @@ function cadastrar(){
 }
 
 
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
 

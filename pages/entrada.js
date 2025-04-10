@@ -54,7 +54,7 @@ function acessar(){
             <Text style={styles.voltartext}> clique aqui pra voltar</Text>
         </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate("cadastro")} style={styles.buttonRegister} >
+            <TouchableOpacity onPress={() => navigation.navigate("cadastro")} style={styles.buttonRegister}>
               <Text style={styles.registerText}>
                 Não possui uma conta? Cadastre-se
               </Text>
