@@ -9,82 +9,68 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Cadastro() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
-    const[email,setEmail] = useState(''); //Variavel & Função
-    const[senha,setSenha] = useState('');
+  const [email,setEmail]=useState("");
+  const [senha,setSenha]=useState("");
 
-function cadastrar(){
-  const usuario = {email:email, senha:senha }
-  AsyncStorage.setItem("chave", JSON.stringify(usuario));
-  alert("Cadastro efeituado com sucesso")
-}
-
-function cadastrar(){
-  if (email == "victorrocha0223@gmail.com" && senha == "2512"){
-    navigation.navigate("sucesso")
-  }else("Dados Incorretos")
-}
-
-
+  function cadastrar(){
+    const usuario ={email:email, senha:senha}
+    AsyncStorage.setItem("chave", JSON.stringify(usuario));
+    alert("Cadastro efetuado com sucesso.")
+  }
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
 
-
+      <TouchableOpacity onPress={() => navigation.navigate("saida")} style={styles.botaotext}>
+        
+      </TouchableOpacity>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Animatable.View
             animation="fadeInLeft"
             delay={500}
-            style={styles.containerHeader}
-          >
-            <Text style={styles.message}>Cadastre-se</Text>
+            style={styles.containerHeader}>
+           <View style={styles.headerRow}>
+                <TouchableOpacity onPress={() => navigation.navigate("index")}>
+                  <Ionicons name="arrow-back" size={24} color="white" />
+                </TouchableOpacity>
+                <Text style={styles.message}>Cadastre-se</Text>
+              </View>
           </Animatable.View>
 
           <Animatable.View animation="fadeInUp" style={styles.containerForm}>
             <Text style={styles.title}>E-mail</Text>
-            <TextInput placeholder="Digite um email..." style={styles.input} onChangeText={(value) => setEmail(value)} />
-            {/* <TextInput placeholder="Digite seu Telefone..." style={styles.input} onChangeText={(value) => setTelefone(value)} />
-            <TextInput placeholder="Digite seu CPF..." style={styles.input} onChangeText={(value) => setCpf(value)} /> */}
-            <TextInput placeholder="Escolha uma senha" style={styles.input} onChangeText={(value) => setSenha(value)} />
-
-
-            <TouchableOpacity onPress={acessar} style={styles.button} >
-              <Text style={styles.buttonText} >Cadastrar</Text>
+            
+            <TextInput placeholder="Digite um email..." style={styles.input} onChangeText={(value)=>setEmail(value)} />
+            
+            <TextInput placeholder="Sua senha" style={styles.input} onChangeText={(value)=>setSenha(value)} secureTextEntry/>
+            
+            <TouchableOpacity onPress={cadastrar} style={styles.button}>
+              <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity
-            onPress={() => navigation.navigate("saida")}
-            style={styles.voltar}>
-            <Text style={styles.voltartext}> clique aqui pra voltar</Text>
-        </TouchableOpacity>
-
-            <TouchableOpacity 
-            onPress={() => navigation.navigate("cadastre")}
-            style={styles.buttonRegister}>
-
-              <Text style={styles.registerText}>
-                Não possui uma conta? Cadastre-se
-              </Text>
-            </TouchableOpacity>
+            
           </Animatable.View>
-          <StatusBar style="light"></StatusBar>
+          <StatusBar style="light" />
         </View>
-
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }
-
 const styles = StyleSheet.create({
+    headerRow: {
+        flexDirection: "row",
+        alignItems: "center",
+      },
   container: {
     flex: 1,
     backgroundColor: "#880000",
@@ -130,27 +116,5 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 18,
     fontWeight: "bold",
-  },
-  buttonRegister: {
-    marginTop: 14,
-    alignSelf: "center",
-  },
-  registerText: {
-    color: "#a1a1a1",
-  },
-
-  titlebutton:{
-    backgroundColor: "#880000",
-    color: "#fff",
-    fontSize: 18,
-  },
-
-  botaotext:{
-    width: "100%",
-    borderRadius: 4,
-    paddingVertical: 8,
-    marginTop: 14,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });

@@ -2,7 +2,7 @@
   "expo": {
     "name": "TelaLogin",
     "slug": "TelaLogin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -16,16 +16,23 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode":2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.viccavalcant3.TelaLogin"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "08692017-446b-4538-b8ee-5ea71b6e1f1f"
+      }
+    }
   }
 }

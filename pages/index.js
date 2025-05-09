@@ -3,10 +3,9 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import * as Animatable from "react-native-animatable";
-import { StatusBar } from "expo-status-bar";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
-
+import { StatusBar } from 'expo-status-bar';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -16,16 +15,17 @@ export default function Bem_Vindo() {
   const [loaded, error] = useFonts({
     'Oswald': require('../assets/fonts/Oswald-VariableFont_wght.ttf'),
   });
-
+  
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
     }
   }, [loaded, error]);
-
+  
   if (!loaded && !error) {
     return null;
   }
+ 
 
   return (
     <View style={styles.container}>
@@ -38,27 +38,18 @@ export default function Bem_Vindo() {
           resizeMode="contain"
         />
       </View>
-      
-      <Animatable.View
-        animation='fadeInUp'
-        delay={600}
-        style={styles.containerForm}
-      >
+      <Animatable.View delay={600} animation='fadeInUp' style={styles.containerForm}>
         <Text style={styles.title}>
           Monitore e organize seus recursos didáticos de qualquer lugar!
         </Text>
         <Text style={styles.text}>Faça o login para começar</Text>
-        
-        <TouchableOpacity
-          onPress={() => navigation.navigate("entrada")}
-          style={styles.button}>
+        <TouchableOpacity 
+        onPress={() => navigation.navigate("entrada")} style={styles.button}>
           <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
-
-
         </Animatable.View>
-      <StatusBar style="light"/>
-    </View>
+        <StatusBar style="auto" />
+      </View>
   );
 }
 const styles = StyleSheet.create({
@@ -78,7 +69,7 @@ const styles = StyleSheet.create({
   containerForm: {
     flex: 1,
     backgroundColor: "#880000",
-    borderTopLeftRadius: 25, //aredondar os cantos
+    borderTopLeftRadius: 25 /*borda apenas na parte de cima*/,
     borderTopRightRadius: 25,
     paddingStart: "5%",
     paddingEnd: "5%",

@@ -9,66 +9,73 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import * as Animatable from "react-native-animatable";
-import { StatusBar } from "expo-status-bar";
-
+import { useNavigation } from "@react-navigation/native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { StatusBar } from 'expo-status-bar';
 
 export default function Acesso() {
-    const navigation = useNavigation()
+  const navigation = useNavigation();
 
-    const[email,setEmail] = useState(''); //Variavel & Função
-    const[senha,setSenha] = useState('');
+  const [email,setEmail]=useState('');
+  const [senha,setSenha]=useState('');
 
-function acessar(){
-  if (email == "victorrocha0223@gmail.com" && senha == "2512"){
-    navigation.navigate("sucesso")
-  }else("Dados Incorretos")
-}
+
+  function acessar(){
+    if(email=="victorrocha0223@gmail.com" &&senha =="251207"){
+      navigation.navigate("sucesso")}
+    }
+  
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
 
-
+      <TouchableOpacity onPress={() => navigation.navigate("saida")} style={styles.botaotext}>
+        
+      </TouchableOpacity>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
           <Animatable.View
             animation="fadeInLeft"
             delay={500}
-            style={styles.containerHeader}
-          >
-            <Text style={styles.message}>Bem-vindo(a)</Text>
+            style={styles.containerHeader}>
+           <View style={styles.headerRow}>
+                <TouchableOpacity onPress={() => navigation.navigate("index")}>
+                  <Ionicons name="arrow-back" size={24} color="white" />
+                </TouchableOpacity>
+                <Text style={styles.message}>Bem-vindo(a)</Text>
+              </View>
           </Animatable.View>
 
           <Animatable.View animation="fadeInUp" style={styles.containerForm}>
             <Text style={styles.title}>E-mail</Text>
-            <TextInput placeholder="Digite um email..." style={styles.input} onChangeText={(value) => setEmail(value)} />
-            <TextInput placeholder="Sua senha" style={styles.input} onChangeText={(value) => setSenha(value)} />
-
-            <TouchableOpacity onPress={acessar} style={styles.button} >
-              <Text style={styles.buttonText} >Acessar</Text>
+            
+            <TextInput placeholder="Digite um email..." style={styles.input} onChangeText={(value)=>setEmail(value)} />
+            
+            <TextInput placeholder="Sua senha" style={styles.input} onChangeText={(value)=>setSenha(value)} secureTextEntry/>
+            
+            <TouchableOpacity onPress={acessar} style={styles.button}>
+              <Text style={styles.buttonText}>Acessar</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity
-            onPress={() => navigation.navigate("saida")}
-            style={styles.voltar}>
-            <Text style={styles.voltartext}> clique aqui pra voltar</Text>
-        </TouchableOpacity>
-
+            
             <TouchableOpacity onPress={() => navigation.navigate("cadastro")} style={styles.buttonRegister}>
               <Text style={styles.registerText}>
                 Não possui uma conta? Cadastre-se
               </Text>
             </TouchableOpacity>
+            
           </Animatable.View>
-          <StatusBar style="light"></StatusBar>
+          <StatusBar style="light" />
         </View>
-
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }
-
 const styles = StyleSheet.create({
+    headerRow: {
+        flexDirection: "row",
+        alignItems: "center",
+      },
   container: {
     flex: 1,
     backgroundColor: "#880000",
@@ -121,38 +128,5 @@ const styles = StyleSheet.create({
   },
   registerText: {
     color: "#a1a1a1",
-  },
-
-  titlebutton:{
-    backgroundColor: "#880000",
-    color: "#fff",
-    fontSize: 18,
-  },
-
-  botaotext:{
-    width: "100%",
-    borderRadius: 4,
-    paddingVertical: 8,
-    marginTop: 14,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  voltar:{
-    backgroundColor: "#ffff",
-    width: "100%",
-    borderRadius: 4,
-    paddingVertical: 8,
-    marginTop: 14,
-    justifyContent: "center",
-    alignItems: "center",
-    // borderWidth: 2,
-    // borderBlockColor: '#880000',
-  },
-
-  voltartext:{
-    color: "#880000",
-    fontSize: 18,
-    fontWeight: "bold",
   },
 });
